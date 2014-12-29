@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pineapple Games</title>
+    </head>
+    
+    <body>
+        
+        
+        <form id='wager_form' method='post' action="/accounts/makewagers" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <!--Display each form The as_p method wraps each element in a paragraph element.
+            This ensures everythin appears neater on a new line -->
+
+            {{ wager_form.as_p }}
+            
+            <!-- provide a submit button-->
+            <input type='submit' name= 'submit' value= 'Show me the money' />
+                
+        </form>
+        
+        
+    </body>
+</html>

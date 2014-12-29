@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <h2>
+            {{ line.game }}
+        </h2>
+        <h3>
+            Selected Team: {{ line.team }}
+            {% if line.spread > 0 %}
+            +
+            {% endif %}
+            {{ line.spread }}
+            
+            <form id='wager_form' method='post' action="/accounts/makewager/{{ line.slug }}/" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <!--Display each form The as_p method wraps each element in a paragraph element.
+            This ensures everythin appears neater on a new line -->
+
+           {% for hidden in wager_form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            
+            {% for field in wager_form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+            
+            <!-- provide a submit button-->
+            <input type='submit' name= 'submit' value= 'Make Wager' />
+                
+        </form>
+        </h3>
+        <h4>
+            Pays: {{ line.pays }}
+        </h4>
+       
+     
+    </body>    
+</html>

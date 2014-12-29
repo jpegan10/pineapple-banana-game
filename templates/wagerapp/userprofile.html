@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
+        <title>Pineapple</title>
+    </head>
+    
+    <body>
+           {{ bettor.user.username }} {{ bettor.balance }}
+            {% if past_wagers %}
+            {% for wager in past_wagers %}
+                <ul>
+                    <li>{{ wager.line }} {{ wager.wageramount }}  </li>
+                </ul>
+            {% endfor %}
+            {% else %}
+            <strong> There are no wagers!</strong>
+            {% endif %}
+            
+    </body>
+</html>

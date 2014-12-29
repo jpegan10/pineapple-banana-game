@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
+        <title>Pineapple</title>
+    </head>
+    
+    <body>
+        {% if bettor_list %}
+        {% for bettor in bettor_list %}
+            <ul>
+               <li> <a href='/wagerapp/userprofile/{{ bettor.user.username }}/'>{{ bettor.user.username }}  </a>{{ bettor.balance }}  </li>  
+            </ul>
+        {% endfor %}
+        {% else %}
+            <strong> There are no bettors here</strong>
+        {% endif %}
+    </body>
+</html>

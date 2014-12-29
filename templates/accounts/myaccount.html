@@ -1,0 +1,83 @@
+{% extends 'accounts/base.html' %}
+
+{% block body_block %}
+    
+    <h2> {{ account.holder.username }} {{ account.balance }}</h2>
+    <h2> Wagers</h2>
+    <table>
+    {% for wager in wagersmade %}
+        
+    {% if forloop.first %}
+        <tr>
+        <h1>
+        <td>Date</td>
+        <td>Game</td>
+        <td>Line Spread or Odds</td>
+        <td>Amount</td>
+        <td>Result</td>
+        <td>Previous Balance</td>
+        <td>New Balance</td>
+        
+        </h1>
+        </tr>
+    {% endif %}
+    <tr>
+        <td>{{  wager.submitted }}</td>
+        <td>{{ wager.line.game }}</td>
+        
+        <td>
+    {% if wager.line.spread == 0 %}
+        {{ wager.line.team }} {{ wager.line.pays }}
+    {% else %}
+        {{ wager.line.team }} {{ wager.line.spread }}
+    {% endif %}
+        </td>
+        <td>{{ wager.amount }}</td>
+        <td>{{ wager.line.result }}</td>
+        <td>{{ wager.previous_balance }}</td>
+        <td>{{ wager.forward_balance }}</td>
+  
+
+        </tr>
+    
+    
+    {% endfor %}
+    </table>
+    <h2> Payouts</h2>
+    <table>
+    {% for wagerpaid in wagerspaid %}
+        
+    {% if forloop.first %}
+        <tr>
+        <h1>
+        <td>Date</td>
+        <td>Game</td>
+        
+        <td>Line </td>
+                <td>Result</td>
+        <td>Payout Amount</td>
+
+        <td>Previous Balance</td>
+        <td>New Balance</td>
+        
+        </h1>
+        </tr>
+    {% endif %}
+    <tr>
+        <td>{{  wagerpaid.submitted }}</td>
+        <td>{{ wagerpaid.wager.line.game }}</td>
+        
+        <td>{{ wagerpaid.wager.line }}</td>
+        <td>{{ wagerpaid.wager.line.result }}</td>
+        <td>{{ wagerpaid.amount }}</td>
+
+        <td>{{ wagerpaid.previous_balance }}</td>
+        <td>{{ wagerpaid.forward_balance }}</td>
+  
+
+        </tr>
+    
+    
+    {% endfor %}
+    </table>
+{% endblock %}

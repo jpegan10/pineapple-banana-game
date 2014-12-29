@@ -1,0 +1,26 @@
+{% extends 'accounts/base.html' %}
+
+{% block body_block %}
+
+<table>
+    <tr>
+    <th> Name</th>
+    <th> Account Name   </th>
+    <th> Balance   </th>
+        </tr>
+    <tr>
+    {% for account in allaccounts %}
+       
+ 
+     
+    
+    <td> <a href="{% url 'public_accounts' account.holder.username %}">{{ account.holder.username  }} </a> </td>
+    <td>  {{account.name }}  </td>
+    <td>  {{account.balance }}  </td>
+    </tr>
+
+    
+   
+    {% endfor %}
+</table>
+{% endblock body_block %}

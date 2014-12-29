@@ -1,0 +1,38 @@
+{% extends 'accounts/base.html' %}
+    
+{% block body_block %}
+    
+    
+    <table>
+        <tr>
+        <th>Game</th>
+        <th> Home Team</th>
+        <th> Home Spread  </th>
+        <th> Away Team</th>
+        <th> Away Spread</th>
+        <th>Home Team   </th>
+        <th>Pays</th>
+        <th> Away Team  </th>
+        <th>Pays</th>
+        </tr>
+    {% for game in games %}
+
+    <tr>
+        <td>{{ game }}</td>
+        
+        {% for line in game.availableline_set.all %}
+    
+    {% if line.spread == 0 %}
+        <td>{{ line.team }}</td><td><a href='/accounts/makewager/{{ line.slug }}/'>{{ line.pays }}</a></td> 
+    {% else %}
+        <td>{{ line.team }}</td><td><a href='/accounts/makewager/{{ line.slug }}/'>{{ line.spread }}</a></td>
+    {% endif %}
+
+
+    {% endfor %}
+        </tr> 
+    
+    
+    {% endfor %}
+    </table>
+{% endblock %}
